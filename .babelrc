@@ -1,0 +1,13 @@
+{
+  "presets": ["react", "env"],
+  "env": {
+        "targets": {
+            "browsers": ["last 2 versions", "ie >= 10"]
+            },
+        "modules": false
+  },
+  "plugins": [
+    "transform-runtime",
+    "syntax-dynamic-import"
+  ]
+}
