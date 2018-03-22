@@ -43,14 +43,44 @@ class Tab2 extends Component {
     onPullingDown() {
         setTimeout(() => {
             console.log('pulling down and load data');
+            
+            const newList = this.createTestData(10, true);
+            
+            this.setState({
+                listData: newList,
+            });
             this.minirefresh.endDownLoading(true);
         }, 500);
     }
     onPullingUp() {
         setTimeout(() => {
             console.log('pulling up and load data');
-            this.minirefresh.endUpLoading(true);
+            
+            const newList = this.state.listData.concat(this.createTestData(2));
+            
+            this.setState({
+                listData: newList,
+            });
+            this.minirefresh.endUpLoading(newList.length >= 20);
         }, 500);
+    }
+    createTestData(count, isReset) {
+        if (isReset) {
+            this.count = 0;
+        }
+        this.count = this.count || 0;
+        
+        const res = [];
+        const dateStr = (new Date()).toLocaleString();
+        for (let i = 0; i < count; i++) {
+            res.push({
+                title: `测试第【${this.count++}】条新闻标题`,
+                date: dateStr,
+            });
+        }
+        this.count++;
+        
+        return res;
     }
     render() {
         return (
