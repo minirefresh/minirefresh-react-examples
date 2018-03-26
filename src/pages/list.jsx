@@ -13,20 +13,11 @@ import mapStateToProps from '../reducers/data';
 
 import MiniRefresh from '../components/minirefresh';
 
-class Tab2 extends Component {
+class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listData: [{
-                title: '标题1',
-                data: '2018-03-22',
-            }, {
-                title: '标题2',
-                data: '2018-03-22',
-            }, {
-                title: '标题3',
-                data: '2018-03-22',
-            }],
+            listData: [],
             options: {
                 container: '.minirefresh-wrap',
                 up: {
@@ -44,41 +35,42 @@ class Tab2 extends Component {
         setTimeout(() => {
             console.log('pulling down and load data');
             
-            const newList = this.createTestData(10, true);
-            
             this.setState({
-                listData: newList,
+                listData: this.createTestData(10, true),
             });
             this.minirefresh.endDownLoading(true);
         }, 500);
     }
     onPullingUp() {
         setTimeout(() => {
-            console.log('pulling up and load data');
+            console.log(`pulling up and load data: ${this.state.listData.length}`);
             
-            const newList = this.state.listData.concat(this.createTestData(2));
+            const newList = this.createTestData(2, false, this.state.listData);
             
             this.setState({
                 listData: newList,
             });
+            
+            console.log(`pulling up end: ${newList.length}`);
             this.minirefresh.endUpLoading(newList.length >= 20);
         }, 500);
     }
-    createTestData(count, isReset) {
+    createTestData(count, isReset, oldData) {
         if (isReset) {
             this.count = 0;
         }
         this.count = this.count || 0;
         
-        const res = [];
+        let res = [];
         const dateStr = (new Date()).toLocaleString();
+        
         for (let i = 0; i < count; i++) {
             res.push({
                 title: `测试第【${this.count++}】条新闻标题`,
                 date: dateStr,
             });
         }
-        this.count++;
+        oldData && (res = oldData.concat(res));
         
         return res;
     }
@@ -123,4 +115,4 @@ function bindActionWithDispatchToProps(dispatch) {
     return bindActionCreators(actionList, dispatch);
 }
 
-export default connect(mapStateToProps, bindActionWithDispatchToProps)(Tab2);
+export default connect(mapStateToProps, bindActionWithDispatchToProps)(List);

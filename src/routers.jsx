@@ -17,21 +17,12 @@ export default class Routers extends Component {
     render() {
         return (
             <Router history={history}>
-                <div>
-                    {
-                        /**
-                         * 这里可以公共的样式,比如 头部, 尾部, 等.
-                         */
-                    }
-                    <h2>This is a roster page!</h2>
-                    <Switch>
-                        <Route path="/tab1" component={Tab1} />
-                        <Route exact path="/" component={Tab1} />
-                        <Route path="/tab2" component={Tab2} />
-                        <Route path="/list" component={List} />
-                    </Switch>
-                    <App />
-                </div>
+                <Switch>
+                    <Route exact path="/" component={App} />
+                    <Route path="/tab1" component={Tab1} />
+                    <Route path="/tab2" component={Tab2} />
+                    <Route path="/list" component={List} />
+                </Switch>
             </Router>
         );
     }

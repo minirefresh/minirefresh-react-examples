@@ -10,6 +10,7 @@ export default class App extends Component {
         return (
             <header>
                 <nav>
+                    <h2>This is a roster page!</h2>
                     <ul>
                         <li><a><Link to="/">Home</Link></a></li>
                         <li><a><Link to="/tab1">Tab1</Link></a></li>
