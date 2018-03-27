@@ -6,7 +6,7 @@ module.exports = {
     "parser": "babel-eslint",
     'parserOptions': {
         // ECMAScript 版本
-        "ecmaVersion": 6,
+        "ecmaVersion": 7,
         'sourceType': 'module',
         'ecmaFeatures': {
             // 允许在全局作用域下使用 return 语句

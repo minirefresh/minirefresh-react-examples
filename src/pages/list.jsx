@@ -45,7 +45,7 @@ class List extends Component {
         setTimeout(() => {
             console.log(`pulling up and load data: ${this.state.listData.length}`);
             
-            const newList = this.createTestData(2, false, this.state.listData);
+            const newList = this.createTestData(4, false, this.state.listData);
             
             this.setState({
                 listData: newList,

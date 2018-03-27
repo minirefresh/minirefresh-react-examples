@@ -46,4 +46,11 @@ class Minirefresh extends Component {
     }
 }
 
+// 默认熟悉
+// 注意，Props一旦在组件内部确认，就不可改变
+// 当然，父组件可以传新的props
+Minirefresh.defaultProps = {
+    options: {},
+};
+
 export default Minirefresh;
